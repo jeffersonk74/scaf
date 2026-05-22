@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="SCAF RCA - club de football amateur : actualités, équipe, partenaires et contact." />
+    <title>SCAF RCA - Club de football amateur</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#contenu">Aller au contenu principal</a>
+
+    <header class="site-header" id="top">
+      <div class="container header-inner">
+        <a class="brand" href="#top" aria-label="SCAF RCA, retour à l'accueil">
+          <span class="brand-mark brand-mark--crest" aria-hidden="true">
+            <svg viewBox="0 0 64 64" role="presentation" focusable="false" aria-hidden="true">
+              <path d="M32 4 52 11v19c0 14-8.3 24.8-20 30C20.3 54.8 12 44 12 30V11z" />
+              <circle cx="32" cy="27" r="12" />
+              <path d="M27 23.5 29.8 26l3.8-1 1 3.8 3.9 1-1.1 3.8 2.8 2.8-2.8 2.8-3.9-1-1 3.8-3.8-1-2.8 2.8-2.8-2.8 1-3.8-3.8-1 1-3.8-2.8-2.8 2.8-2.8 3.8 1z" />
+            </svg>
+          </span>
+          <span class="brand-text">
+            <strong>SCAF RCA</strong>
+            <small>Club de football amateur</small>
+          </span>
+        </a>
+
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
+          <span class="menu-toggle-lines" aria-hidden="true"></span>
+          <span class="sr-only">Ouvrir le menu</span>
+        </button>
+
+        <nav class="site-nav" id="primary-navigation" aria-label="Navigation principale">
+          <ul>
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#calendrier">Calendrier</a></li>
+            <li><a href="#galerie">Galerie</a></li>
+            <li><a href="#equipe">Équipe</a></li>
+            <li><a href="#actualites">Actualités</a></li>
+            <li><a href="#partenaires">Partenaires</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <a class="btn btn-primary header-cta" href="#contact">Rejoindre le club</a>
+      </div>
+    </header>
+
+    <main id="contenu">
+      <section class="hero" id="accueil" aria-labelledby="hero-title">
+        <div class="hero-background" aria-hidden="true"></div>
+        <div class="container hero-inner">
+          <div class="hero-copy reveal">
+            <p class="eyebrow">Saison 2026 · Cohésion · Performance</p>
+            <h1 id="hero-title">Plus qu'un club, une famille.</h1>
+            <p class="hero-text">
+              Faites vivre le football amateur avec une équipe soudée, un projet sportif ambitieux et une passion partagée sur et en dehors du terrain.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#actualites">Découvrir nos actualités</a>
+              <a class="btn btn-secondary" href="#equipe">Voir l'équipe</a>
+            </div>
+            <dl class="hero-stats" aria-label="Chiffres clés du club">
+              <div>
+                <dt>Licenciés</dt>
+                <dd>120+</dd>
+              </div>
+              <div>
+                <dt>Équipes</dt>
+                <dd>6</dd>
+              </div>
+              <div>
+                <dt>Partenaires</dt>
+                <dd>18</dd>
+              </div>
+            </dl>
+          </div>
+
+          <aside class="hero-panel reveal" aria-label="Temps fort du club">
+            <p class="panel-label">Prochain match</p>
+            <h2>Samedi 18h00</h2>
+            <p>Stade municipal · SCAF RCA vs AS Horizon</p>
+            <ul class="match-list">
+              <li><span>Objectif</span><strong>Consolider le podium</strong></li>
+              <li><span>Ambiance</span><strong>Entrée libre pour les familles</strong></li>
+              <li><span>Animation</span><strong>Stand buvette et boutique</strong></li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section section-news" id="actualites" aria-labelledby="news-title">
+        <div class="container">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Dernières nouvelles</p>
+            <h2 id="news-title">Actualités du club</h2>
+            <p>Une structure claire pour afficher des contenus dynamiques depuis MySQL plus tard.</p>
+          </div>
+          <div class="card-grid" id="news-grid" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="section section-calendar" id="calendrier" aria-labelledby="calendar-title">
+        <div class="container">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Agenda sportif</p>
+            <h2 id="calendar-title">Calendrier des matchs</h2>
+            <p>Une lecture rapide des prochaines rencontres, prête à être reliée à une base de données.</p>
+          </div>
+          <div class="calendar-grid" id="calendar-grid" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="section section-gallery" id="galerie" aria-labelledby="gallery-title">
+        <div class="container">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Visages du club</p>
+            <h2 id="gallery-title">Galerie photos et portraits</h2>
+            <p>Une galerie visuelle compacte pour mettre en avant les joueurs, le staff et les temps forts du collectif.</p>
+          </div>
+          <div class="gallery-grid" id="gallery-grid" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="section section-team" id="equipe" aria-labelledby="team-title">
+        <div class="container team-layout">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Talents & valeurs</p>
+            <h2 id="team-title">Une équipe qui progresse ensemble</h2>
+            <p>Formation, solidarité et discipline : trois repères pour faire grandir les joueurs et le collectif.</p>
+          </div>
+
+          <div class="team-content reveal">
+            <article class="values-card">
+              <h3>Nos valeurs</h3>
+              <ul class="value-list">
+                <li><span>01</span><div><strong>Respect</strong><p>Un esprit fair-play dans chaque match et chaque entraînement.</p></div></li>
+                <li><span>02</span><div><strong>Engagement</strong><p>Présence, rigueur et envie de progresser ensemble.</p></div></li>
+                <li><span>03</span><div><strong>Ambition</strong><p>Un projet local, structuré et tourné vers la performance.</p></div></li>
+              </ul>
+            </article>
+
+            <article class="players-card" aria-label="Aperçu de l'effectif">
+              <div class="players-topline">
+                <span>Effectif</span>
+                <strong>23 joueurs</strong>
+              </div>
+              <div class="players-cluster" aria-hidden="true">
+                <span class="player-dot large"></span>
+                <span class="player-dot"></span>
+                <span class="player-dot"></span>
+                <span class="player-dot"></span>
+                <span class="player-dot"></span>
+              </div>
+              <p>
+                Un aperçu visuel des profils du club, prêt à être alimenté par des données réelles, des portraits ou des statistiques.
+              </p>
+              <div class="badge-row">
+                <span class="badge">U18</span>
+                <span class="badge">Seniors</span>
+                <span class="badge">Féminines</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-partners" id="partenaires" aria-labelledby="partners-title">
+        <div class="container">
+          <div class="section-heading reveal compact">
+            <p class="eyebrow">Nos soutiens</p>
+            <h2 id="partners-title">Partenaires et sponsors</h2>
+          </div>
+          <div class="partners-strip reveal" id="partners-strip" aria-label="Logos des partenaires"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="contact">
+      <div class="container footer-grid">
+        <div>
+          <a class="brand footer-brand" href="#top">
+            <span class="brand-mark brand-mark--crest" aria-hidden="true">
+              <svg viewBox="0 0 64 64" role="presentation" focusable="false" aria-hidden="true">
+                <path d="M32 4 52 11v19c0 14-8.3 24.8-20 30C20.3 54.8 12 44 12 30V11z" />
+                <circle cx="32" cy="27" r="12" />
+                <path d="M27 23.5 29.8 26l3.8-1 1 3.8 3.9 1-1.1 3.8 2.8 2.8-2.8 2.8-3.9-1-1 3.8-3.8-1-2.8 2.8-2.8-2.8 1-3.8-3.8-1 1-3.8-2.8-2.8 2.8-2.8 3.8 1z" />
+              </svg>
+            </span>
+            <span class="brand-text">
+              <strong>SCAF RCA</strong>
+              <small>Club de football amateur</small>
+            </span>
+          </a>
+          <p class="footer-copy">
+            Un club local, moderne et accessible, porté par ses bénévoles, ses joueurs et ses partenaires.
+          </p>
+        </div>
+
+        <nav aria-label="Liens rapides" class="footer-nav">
+          <h3>Liens rapides</h3>
+          <ul>
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#equipe">Équipe</a></li>
+            <li><a href="#actualites">Actualités</a></li>
+            <li><a href="#partenaires">Partenaires</a></li>
+          </ul>
+        </nav>
+
+        <div>
+          <h3>Suivez-nous</h3>
+          <ul class="social-links">
+            <li><a href="https://facebook.com" rel="noreferrer" target="_blank">Facebook</a></li>
+            <li><a href="https://instagram.com" rel="noreferrer" target="_blank">Instagram</a></li>
+            <li><a href="https://x.com" rel="noreferrer" target="_blank">X</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <p>Mentions légales · Politique de confidentialité · Contact</p>
+        <p>&copy; <span id="current-year"></span> SCAF RCA. Tous droits réservés.</p>
+      </div>
+    </footer>
+  </body>
+</html>
