@@ -1072,37 +1072,164 @@ a {
 }
 
 /* --- Brand new: header grass background + hero carousel styles --- */
-/* Header background: local football pitch image, blurred and scaled to create a premium feel */
+/* Shared textured header foundation. Active look is controlled by header style class. */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  overflow: hidden;
+  isolation: isolate;
+}
+
 .site-header::before {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 0; /* behind header content */
-  background-image: url('image_e17ca3.png'); /* local image - place at root or adapt path */
+  z-index: 0;
+  background-image: url('image_e17ca3.png');
   background-size: cover;
-  background-position: center center;
-  transform: scale(1.1); /* slightly enlarge to hide blur edges */
-  filter: blur(3px) contrast(0.98) saturate(0.95);
-  will-change: transform, filter;
+  background-position: center;
+  transform: scale(1.1);
+  filter: blur(3px) saturate(0.95);
   pointer-events: none;
 }
 
-/* dark overlay + glass effect preserving sharp content above */
 .site-header::after {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 1; /* sits above the image but under the header content */
-  background-color: rgba(11, 27, 18, 0.85); /* noble dark green overlay */
-  -webkit-backdrop-filter: blur(3px);
-  backdrop-filter: blur(3px);
+  z-index: 1;
+  background: var(--header-overlay, rgba(11, 27, 18, 0.85));
+  -webkit-backdrop-filter: blur(var(--header-backdrop, 4px));
+  backdrop-filter: blur(var(--header-backdrop, 4px));
   pointer-events: none;
 }
 
-/* ensure header children are above overlays and remain crisp */
 .header-inner {
   position: relative;
   z-index: 2;
+}
+
+.site-header .brand-mark--crest {
+  background: #fff;
+  border: 1.5px solid rgba(214, 178, 74, 0.92);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.2);
+  padding: 0.2rem;
+}
+
+.site-header .brand-text strong {
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 800;
+}
+
+.site-header .brand-text small {
+  color: rgba(255, 255, 255, 0.88);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 0.66rem;
+}
+
+.site-header .menu-toggle {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(214, 178, 74, 0.45);
+}
+
+.site-header .menu-toggle-lines,
+.site-header .menu-toggle-lines::before,
+.site-header .menu-toggle-lines::after {
+  background: #fff;
+}
+
+.site-header .site-nav a {
+  color: rgba(255, 255, 255, 0.94);
+  background: transparent;
+}
+
+.site-header .site-nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0.2rem;
+  width: 48%;
+  height: 2px;
+  border-radius: 999px;
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  opacity: 0;
+}
+
+.site-header .site-nav a:hover::after,
+.site-header .site-nav a:focus-visible::after,
+.site-header .site-nav a[aria-current="page"]::after {
+  transform: translateX(-50%) scaleX(1);
+  opacity: 1;
+}
+
+/* 1) L'Imperial (active by default in index.html) */
+.site-header.header-style-imperial {
+  --header-overlay: rgba(11, 27, 18, 0.85);
+  --header-backdrop: 4px;
+  border-bottom: 1px solid rgba(214, 178, 74, 0.8);
+  box-shadow: inset 0 -1px 0 rgba(214, 178, 74, 0.9);
+}
+
+.site-header.header-style-imperial .site-nav a::after {
+  background: linear-gradient(90deg, rgba(214, 178, 74, 0.92), rgba(255, 228, 146, 0.95));
+}
+
+.site-header.header-style-imperial .site-nav a:hover,
+.site-header.header-style-imperial .site-nav a:focus-visible {
+  color: #ffe8a8;
+  text-shadow: 0 0 10px rgba(214, 178, 74, 0.35);
+}
+
+.site-header.header-style-imperial .header-cta {
+  border-radius: 0.65rem;
+  background: linear-gradient(180deg, #fffdf4, #efe4bf);
+  border: 1px solid rgba(214, 178, 74, 0.95);
+  color: #0e2a18;
+  font-weight: 800;
+  box-shadow: 0 8px 18px rgba(11, 27, 18, 0.18);
+}
+
+/* 2) L'Epure Moderne (glassmorphism variant) */
+.site-header.header-style-glass {
+  --header-overlay: rgba(8, 14, 12, 0.45);
+  --header-backdrop: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.site-header.header-style-glass .site-nav a {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  padding: 0.5rem 0.9rem;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.site-header.header-style-glass .site-nav a::after {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+/* 3) Le Federal (institutional and framed) */
+.site-header.header-style-federal {
+  --header-overlay: rgba(9, 15, 12, 0.86);
+  --header-backdrop: 2px;
+  border-bottom: 3px solid #d51f32;
+}
+
+.site-header.header-style-federal .site-nav a::after {
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.site-header.header-style-federal .header-cta {
+  border-radius: 0.55rem;
+  background: linear-gradient(180deg, #ffffff, #dfe7df);
+  color: #0f2418;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 0 rgba(9, 15, 12, 0.35), 0 12px 22px rgba(0, 0, 0, 0.25);
 }
 
 /* Hero carousel container (JS populates slides inside). Covers the hero area */
