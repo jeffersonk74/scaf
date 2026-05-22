@@ -1176,6 +1176,21 @@ a {
   box-shadow: inset 0 -1px 0 rgba(214, 178, 74, 0.9);
 }
 
+.site-header.header-style-imperial .header-inner {
+  min-height: 4.75rem; /* conserve la hauteur d'origine */
+  align-items: center;
+}
+
+.site-header.header-style-imperial .brand,
+.site-header.header-style-imperial .header-cta {
+  align-self: center;
+}
+
+.site-header.header-style-imperial .header-cta {
+  justify-self: end;
+  min-height: 2.8rem;
+}
+
 .site-header.header-style-imperial .site-nav a::after {
   background: linear-gradient(90deg, rgba(214, 178, 74, 0.92), rgba(255, 228, 146, 0.95));
 }
@@ -1230,6 +1245,16 @@ a {
   color: #0f2418;
   border: 1px solid rgba(255, 255, 255, 0.9);
   box-shadow: 0 8px 0 rgba(9, 15, 12, 0.35), 0 12px 22px rgba(0, 0, 0, 0.25);
+}
+
+@media (min-width: 640px) {
+  .site-header.header-style-imperial .header-inner {
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .site-header.header-style-imperial .site-nav {
+    align-self: center;
+  }
 }
 
 /* Hero carousel container (JS populates slides inside). Covers the hero area */
