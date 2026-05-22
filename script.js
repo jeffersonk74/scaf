@@ -96,6 +96,73 @@ rootStyle.setProperty('--primary', clubTheme.primary);
 rootStyle.setProperty('--primary-dark', clubTheme.primaryDark);
 rootStyle.setProperty('--accent', clubTheme.accent);
 
+/* Hero background carousel (autoplay, accessible, respects reduced-motion) */
+const heroCarouselEl = document.querySelector('#hero-carousel');
+const heroImages = [
+  // Action shots and team images (Unsplash)
+  'https://images.unsplash.com/photo-1517927033932-b3d1d6a2b5a2?auto=format&fit=crop&w=1600&q=60',
+  'https://images.unsplash.com/photo-1507211300751-7a4b5a1c8c3b?auto=format&fit=crop&w=1600&q=60',
+  'https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=1600&q=60'
+];
+
+let carouselIndex = 0;
+let carouselTimer = null;
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function createHeroSlides() {
+  if (!heroCarouselEl) return;
+
+  heroImages.forEach((src, idx) => {
+    const slide = document.createElement('div');
+    slide.className = 'hero-slide';
+    slide.style.backgroundImage = `url('${src}')`;
+    slide.setAttribute('role', 'img');
+    slide.setAttribute('aria-label', `Image ${idx + 1} de la galerie`);
+    if (idx === 0) slide.classList.add('is-active');
+    heroCarouselEl.appendChild(slide);
+  });
+
+  const overlay = document.createElement('div');
+  overlay.className = 'hero-overlay';
+  heroCarouselEl.appendChild(overlay);
+}
+
+function showSlide(nextIndex) {
+  const slides = heroCarouselEl ? Array.from(heroCarouselEl.querySelectorAll('.hero-slide')) : [];
+  if (!slides.length) return;
+  slides.forEach((s, i) => s.classList.toggle('is-active', i === nextIndex));
+  carouselIndex = nextIndex;
+}
+
+function startCarousel() {
+  if (prefersReduced) return; // do not animate for users who prefer reduced motion
+  stopCarousel();
+  carouselTimer = setInterval(() => {
+    const slides = heroCarouselEl.querySelectorAll('.hero-slide');
+    const next = (carouselIndex + 1) % slides.length;
+    showSlide(next);
+  }, 6000);
+}
+
+function stopCarousel() {
+  if (carouselTimer) {
+    clearInterval(carouselTimer);
+    carouselTimer = null;
+  }
+}
+
+createHeroSlides();
+if (!prefersReduced) startCarousel();
+
+// Pause on hover/focus for accessibility
+const heroSection = document.querySelector('.hero');
+if (heroSection) {
+  heroSection.addEventListener('mouseenter', stopCarousel);
+  heroSection.addEventListener('focusin', stopCarousel);
+  heroSection.addEventListener('mouseleave', () => { if (!prefersReduced) startCarousel(); });
+  heroSection.addEventListener('focusout', () => { if (!prefersReduced) startCarousel(); });
+}
+
 const createNewsCard = ({ title, summary, date }) => {
   const article = document.createElement('article');
   article.className = 'card reveal';
