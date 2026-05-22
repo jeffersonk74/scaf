@@ -233,11 +233,11 @@ a {
   padding: 0.65rem 1rem;
   border-radius: 999px;
   color: var(--muted);
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid transparent;
-  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  --primary: #1f8f54;
+  --primary-dark: #0b6b3c;
+  --accent: #e6172b;
 }
-
+  --shadow: 0 18px 50px rgba(31, 143, 84, 0.12);
 .site-nav a:hover,
 .site-nav a:focus-visible {
   color: var(--primary-dark);
@@ -248,8 +248,8 @@ a {
 
 .header-cta {
   display: none;
-}
-
+    radial-gradient(circle at top left, rgba(31, 143, 84, 0.14), transparent 30%),
+    radial-gradient(circle at top right, rgba(230, 23, 43, 0.12), transparent 24%),
 .hero {
   position: relative;
   overflow: hidden;
@@ -261,9 +261,11 @@ a {
   inset: 0;
   background:
     radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.35), transparent 18%),
-    radial-gradient(circle at 80% 10%, rgba(255, 255, 255, 0.16), transparent 16%),
-    linear-gradient(135deg, rgba(15, 76, 129, 0.98), rgba(11, 56, 96, 0.95));
-  clip-path: polygon(0 0, 100% 0, 100% 84%, 0 100%);
+    linear-gradient(135deg, rgba(11, 107, 60, 0.95), rgba(230, 23, 43, 0.9)),
+    url("hero-bg.svg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .hero-background::before,
@@ -280,17 +282,25 @@ a {
   right: -4rem;
   top: 2rem;
 }
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(180deg, rgba(8, 17, 31, 0.08), rgba(8, 17, 31, 0.26));
+  pointer-events: none;
+}
 
 .hero-background::after {
-  width: 26rem;
+  z-index: 1;
   height: 26rem;
   right: 2rem;
   bottom: -10rem;
 }
-
+  fill: var(--accent);
 .hero-inner {
   position: relative;
-  z-index: 1;
+  fill: var(--primary);
   display: grid;
   gap: 1.2rem;
 }

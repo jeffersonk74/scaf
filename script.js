@@ -78,9 +78,9 @@ const galleryItems = [
 ];
 
 const clubTheme = {
-  primary: '#0f4c81',
-  primaryDark: '#0b3860',
-  accent: '#f2b705',
+  primary: '#1f8f54',
+  primaryDark: '#0b6b3c',
+  accent: '#e6172b',
 };
 
 const newsGrid = document.querySelector('#news-grid');
