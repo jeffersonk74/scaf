@@ -4,11 +4,11 @@
   --surface-solid: #ffffff;
   --text: #0f172a;
   --muted: #51607a;
-  --primary: #0f4c81;
-  --primary-dark: #0b3860;
-  --accent: #f2b705;
+  --primary: #16834a;
+  --primary-dark: #0f5d34;
+  --accent: #d51f32;
   --line: rgba(15, 23, 42, 0.1);
-  --shadow: 0 18px 50px rgba(15, 76, 129, 0.12);
+  --shadow: 0 18px 50px rgba(22, 131, 74, 0.12);
   --radius-xl: 2rem;
   --radius-lg: 1.35rem;
   --radius-md: 1rem;
@@ -28,8 +28,8 @@ body {
   font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--text);
   background:
-    radial-gradient(circle at top left, rgba(15, 76, 129, 0.12), transparent 30%),
-    radial-gradient(circle at top right, rgba(242, 183, 5, 0.14), transparent 24%),
+    radial-gradient(circle at top left, rgba(22, 131, 74, 0.12), transparent 30%),
+    radial-gradient(circle at top right, rgba(213, 31, 50, 0.12), transparent 24%),
     var(--bg);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -94,7 +94,7 @@ a {
   z-index: 50;
   backdrop-filter: blur(18px);
   background: rgba(245, 248, 252, 0.75);
-  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  border-bottom: 1px solid rgba(22, 131, 74, 0.1);
 }
 
 .header-inner {
@@ -125,7 +125,12 @@ a {
 }
 
 .brand-mark--crest {
-  padding: 0.32rem;
+  width: 3rem;
+  height: 3.6rem;
+  padding: 0;
+  border-radius: 0.75rem 0.75rem 1.1rem 1.1rem;
+  background: transparent;
+  box-shadow: none;
 }
 
 .brand-mark--crest svg {
@@ -133,16 +138,47 @@ a {
   height: 100%;
 }
 
-.brand-mark--crest path:first-child {
-  fill: rgba(255, 255, 255, 0.98);
+.crest-shield {
+  fill: #ffffff;
+  stroke: rgba(15, 23, 42, 0.2);
+  stroke-width: 1.2;
 }
 
-.brand-mark--crest circle {
-  fill: var(--primary);
+.crest-left {
+  fill: #1f9353;
 }
 
-.brand-mark--crest path:last-child {
-  fill: var(--accent);
+.crest-center {
+  fill: #ffffff;
+}
+
+.crest-right {
+  fill: #e11d2e;
+}
+
+.crest-top {
+  fill: #e11d2e;
+}
+
+.crest-title {
+  fill: #ffffff;
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.crest-subtitle {
+  fill: #ffffff;
+  font-size: 4.8px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.crest-letter {
+  fill: #cda77f;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 32px;
+  font-weight: 700;
 }
 
 .brand-text {
@@ -233,23 +269,23 @@ a {
   padding: 0.65rem 1rem;
   border-radius: 999px;
   color: var(--muted);
-  --primary: #1f8f54;
-  --primary-dark: #0b6b3c;
-  --accent: #e6172b;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid transparent;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
-  --shadow: 0 18px 50px rgba(31, 143, 84, 0.12);
+
 .site-nav a:hover,
 .site-nav a:focus-visible {
   color: var(--primary-dark);
   background: #fff;
-  border-color: rgba(15, 76, 129, 0.16);
+  border-color: rgba(22, 131, 74, 0.18);
   transform: translateY(-1px);
 }
 
 .header-cta {
   display: none;
-    radial-gradient(circle at top left, rgba(31, 143, 84, 0.14), transparent 30%),
-    radial-gradient(circle at top right, rgba(230, 23, 43, 0.12), transparent 24%),
+}
+
 .hero {
   position: relative;
   overflow: hidden;
@@ -261,11 +297,9 @@ a {
   inset: 0;
   background:
     radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.35), transparent 18%),
-    linear-gradient(135deg, rgba(11, 107, 60, 0.95), rgba(230, 23, 43, 0.9)),
-    url("hero-bg.svg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+    radial-gradient(circle at 80% 10%, rgba(255, 255, 255, 0.16), transparent 16%),
+    linear-gradient(135deg, rgba(22, 131, 74, 0.98), rgba(213, 31, 50, 0.95));
+  clip-path: polygon(0 0, 100% 0, 100% 84%, 0 100%);
 }
 
 .hero-background::before,
@@ -282,25 +316,17 @@ a {
   right: -4rem;
   top: 2rem;
 }
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background: linear-gradient(180deg, rgba(8, 17, 31, 0.08), rgba(8, 17, 31, 0.26));
-  pointer-events: none;
-}
 
 .hero-background::after {
-  z-index: 1;
+  width: 26rem;
   height: 26rem;
   right: 2rem;
   bottom: -10rem;
 }
-  fill: var(--accent);
+
 .hero-inner {
   position: relative;
-  fill: var(--primary);
+  z-index: 1;
   display: grid;
   gap: 1.2rem;
 }
@@ -518,7 +544,7 @@ a {
 .calendar-card {
   padding: 1.15rem;
   background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(15, 23, 42, 0.06);
+  border: 1px solid rgba(22, 131, 74, 0.08);
   border-radius: var(--radius-xl);
   box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
 }
@@ -545,7 +571,7 @@ a {
   min-height: 2rem;
   padding: 0.25rem 0.7rem;
   border-radius: 999px;
-  background: rgba(15, 76, 129, 0.08);
+  background: rgba(22, 131, 74, 0.1);
   color: var(--primary-dark);
   font-size: 0.8rem;
   font-weight: 700;
@@ -576,7 +602,7 @@ a {
 .gallery-card {
   overflow: hidden;
   background: #fff;
-  border: 1px solid rgba(15, 23, 42, 0.06);
+  border: 1px solid rgba(22, 131, 74, 0.08);
   border-radius: 1.5rem;
   box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
 }
@@ -588,7 +614,7 @@ a {
   place-items: end start;
   padding: 1rem;
   color: #fff;
-  background: linear-gradient(145deg, rgba(15, 76, 129, 0.82), rgba(11, 56, 96, 0.96));
+  background: linear-gradient(145deg, rgba(22, 131, 74, 0.88), rgba(213, 31, 50, 0.96));
 }
 
 .gallery-visual::before,
@@ -678,7 +704,7 @@ a {
   min-height: 2rem;
   padding: 0.25rem 0.7rem;
   border-radius: 999px;
-  background: rgba(15, 76, 129, 0.08);
+  background: rgba(22, 131, 74, 0.1);
   color: var(--primary-dark);
   font-size: 0.82rem;
   font-weight: 700;
@@ -841,7 +867,7 @@ a {
   min-height: 4.5rem;
   border-radius: var(--radius-lg);
   border: 1px solid rgba(15, 23, 42, 0.07);
-  background: linear-gradient(180deg, #fff, rgba(15, 76, 129, 0.04));
+  background: linear-gradient(180deg, #fff, rgba(22, 131, 74, 0.05));
   display: grid;
   place-items: center;
   text-align: center;
@@ -860,7 +886,7 @@ a {
 
 .site-footer {
   padding: 3rem 0 1.5rem;
-  background: #08111f;
+  background: linear-gradient(135deg, #07150d, #0f2a19);
   color: rgba(255, 255, 255, 0.9);
 }
 
