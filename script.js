@@ -96,72 +96,85 @@ rootStyle.setProperty('--primary', clubTheme.primary);
 rootStyle.setProperty('--primary-dark', clubTheme.primaryDark);
 rootStyle.setProperty('--accent', clubTheme.accent);
 
-/* Hero background carousel (autoplay, accessible, respects reduced-motion) */
-const heroCarouselEl = document.querySelector('#hero-carousel');
-const heroImages = [
-  // Action shots and team images (Unsplash)
-  'https://images.unsplash.com/photo-1517927033932-b3d1d6a2b5a2?auto=format&fit=crop&w=1600&q=60',
-  'https://images.unsplash.com/photo-1507211300751-7a4b5a1c8c3b?auto=format&fit=crop&w=1600&q=60',
-  'https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=1600&q=60'
-];
+/* ==========================
+   Hero carousel (autoplay 5s)
+   Accessible, pauses on hover/focus and respects prefers-reduced-motion
+   Slides are injected into #hero-carousel
+   ========================== */
 
-let carouselIndex = 0;
-let carouselTimer = null;
-const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+(function () {
+  const carouselContainer = document.querySelector('#hero-carousel');
+  if (!carouselContainer) return;
 
-function createHeroSlides() {
-  if (!heroCarouselEl) return;
+  const images = [
+    'https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=1600&q=80',
+    'https://images.unsplash.com/photo-1517927033932-b3d1d6a2b5a2?auto=format&fit=crop&w=1600&q=80',
+    'https://images.unsplash.com/photo-1507211300751-7a4b5a1c8c3b?auto=format&fit=crop&w=1600&q=80'
+  ];
 
-  heroImages.forEach((src, idx) => {
-    const slide = document.createElement('div');
-    slide.className = 'hero-slide';
-    slide.style.backgroundImage = `url('${src}')`;
-    slide.setAttribute('role', 'img');
-    slide.setAttribute('aria-label', `Image ${idx + 1} de la galerie`);
-    if (idx === 0) slide.classList.add('is-active');
-    heroCarouselEl.appendChild(slide);
-  });
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const intervalMs = 5000;
+  let slides = [];
+  let active = 0;
+  let timer = null;
 
-  const overlay = document.createElement('div');
-  overlay.className = 'hero-overlay';
-  heroCarouselEl.appendChild(overlay);
-}
+  function build() {
+    carouselContainer.innerHTML = '';
+    slides = images.map((src, idx) => {
+      const slide = document.createElement('div');
+      slide.className = 'hero-slide';
+      slide.style.backgroundImage = `url('${src}')`;
+      slide.setAttribute('role', 'img');
+      slide.setAttribute('aria-label', `Image ${idx + 1} de la galerie`);
+      if (idx === 0) slide.classList.add('is-active');
+      carouselContainer.appendChild(slide);
+      return slide;
+    });
 
-function showSlide(nextIndex) {
-  const slides = heroCarouselEl ? Array.from(heroCarouselEl.querySelectorAll('.hero-slide')) : [];
-  if (!slides.length) return;
-  slides.forEach((s, i) => s.classList.toggle('is-active', i === nextIndex));
-  carouselIndex = nextIndex;
-}
+    // club gradient overlay
+    const clubOverlay = document.createElement('div');
+    clubOverlay.className = 'hero-overlay-club';
+    carouselContainer.appendChild(clubOverlay);
 
-function startCarousel() {
-  if (prefersReduced) return; // do not animate for users who prefer reduced motion
-  stopCarousel();
-  carouselTimer = setInterval(() => {
-    const slides = heroCarouselEl.querySelectorAll('.hero-slide');
-    const next = (carouselIndex + 1) % slides.length;
-    showSlide(next);
-  }, 6000);
-}
-
-function stopCarousel() {
-  if (carouselTimer) {
-    clearInterval(carouselTimer);
-    carouselTimer = null;
+    // dark overlay for contrast
+    const darkOverlay = document.createElement('div');
+    darkOverlay.className = 'hero-overlay-dark';
+    carouselContainer.appendChild(darkOverlay);
   }
-}
 
-createHeroSlides();
-if (!prefersReduced) startCarousel();
+  function show(index) {
+    slides.forEach((s, i) => s.classList.toggle('is-active', i === index));
+    active = index;
+  }
 
-// Pause on hover/focus for accessibility
-const heroSection = document.querySelector('.hero');
-if (heroSection) {
-  heroSection.addEventListener('mouseenter', stopCarousel);
-  heroSection.addEventListener('focusin', stopCarousel);
-  heroSection.addEventListener('mouseleave', () => { if (!prefersReduced) startCarousel(); });
-  heroSection.addEventListener('focusout', () => { if (!prefersReduced) startCarousel(); });
-}
+  function next() {
+    show((active + 1) % slides.length);
+  }
+
+  function start() {
+    if (prefersReducedMotion) return;
+    stop();
+    timer = setInterval(next, intervalMs);
+  }
+
+  function stop() {
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+  }
+
+  build();
+  start();
+
+  const heroSection = document.querySelector('.hero');
+  if (heroSection) {
+    heroSection.addEventListener('mouseenter', stop);
+    heroSection.addEventListener('mouseleave', () => { if (!prefersReducedMotion) start(); });
+    heroSection.addEventListener('focusin', stop);
+    heroSection.addEventListener('focusout', () => { if (!prefersReducedMotion) start(); });
+  }
+})();
 
 const createNewsCard = ({ title, summary, date }) => {
   const article = document.createElement('article');
