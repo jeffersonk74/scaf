@@ -14,47 +14,66 @@
   <body>
     <a class="skip-link" href="#contenu">Aller au contenu principal</a>
 
-    <header class="site-header header-style-imperial" id="top">
-      <div class="container header-inner">
-        <a class="brand" href="#top" aria-label="SCAF RCA, retour à l'accueil">
-          <span class="brand-mark brand-mark--crest" aria-hidden="true">
-            <svg viewBox="0 0 64 80" role="presentation" focusable="false" aria-hidden="true">
-              <path class="crest-shield" d="M8 7h48v27c0 17.2-11.3 29.4-24 39C19.3 63.4 8 51.2 8 34z" />
-              <path class="crest-left" d="M10 8h14v58H10z" />
-              <path class="crest-center" d="M24 8h16v58H24z" />
-              <path class="crest-right" d="M40 8h14v58H40z" />
-              <rect class="crest-top" x="8" y="7" width="48" height="18" rx="1.2" />
-              <text class="crest-title" x="32" y="19" text-anchor="middle">S.C.A.F</text>
-              <text class="crest-subtitle" x="32" y="31.5" text-anchor="middle">BANGUI</text>
-              <text class="crest-letter" x="32" y="59" text-anchor="middle">S</text>
-            </svg>
-          </span>
-          <span class="brand-text">
-            <strong>SCAF RCA</strong>
-            <small>Club de football amateur</small>
-          </span>
-        </a>
-
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
-          <span class="menu-toggle-lines" aria-hidden="true"></span>
-          <span class="sr-only">Ouvrir le menu</span>
-        </button>
-
-        <nav class="site-nav" id="primary-navigation" aria-label="Navigation principale">
-          <ul>
-            <li><a href="#accueil">Accueil</a></li>
-            <li><a href="#calendrier">Calendrier</a></li>
-            <li><a href="#galerie">Galerie</a></li>
-            <li><a href="#equipe">Équipe</a></li>
-            <li><a href="#actualites">Actualités</a></li>
-            <li><a href="#partenaires">Partenaires</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </nav>
-
-        <a class="btn btn-primary header-cta" href="#contact">Rejoindre le club</a>
+ <header class="site-header header-style-modern" id="top">
+  <div class="header-top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-info">
+        <span class="badge badge-live">Live</span>
+        <span class="info-text">Prochain match : Dimanche à 15h au Stade Barthélemy Boganda</span>
       </div>
-    </header>
+      <div class="top-bar-actions">
+        <a href="#boutique" class="top-bar-link">Boutique</a>
+        <a href="#billetterie" class="top-bar-link">Billetterie</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="header-main">
+    <div class="container header-inner">
+      
+      <a class="brand" href="#top" aria-label="SCAF RCA, retour à l'accueil">
+        <div class="brand-logo-wrapper" aria-hidden="true">
+          <svg viewBox="0 0 64 80" class="brand-svg" focusable="false">
+            <path class="crest-shield" d="M8 7h48v27c0 17.2-11.3 29.4-24 39C19.3 63.4 8 51.2 8 34z" />
+            <path class="crest-left" d="M10 8h14v58H10z" />
+            <path class="crest-center" d="M24 8h16v58H24z" />
+            <path class="crest-right" d="M40 8h14v58H40z" />
+            <rect class="crest-top" x="8" y="7" width="48" height="18" rx="1.2" />
+            <text class="crest-title" x="32" y="19" text-anchor="middle">S.C.A.F</text>
+            <text class="crest-subtitle" x="32" y="31.5" text-anchor="middle">BANGUI</text>
+            <text class="crest-letter" x="32" y="59" text-anchor="middle">S</text>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">SCAF RCA</span>
+          <span class="brand-tagline">Club de Football — Bangui</span>
+        </div>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Ouvrir le menu de navigation">
+        <span class="hamburger-box" aria-hidden="true">
+          <span class="hamburger-inner"></span>
+        </span>
+      </button>
+
+      <nav class="site-nav" id="primary-navigation">
+        <ul class="nav-list">
+          <li><a href="#accueil" class="nav-link active">Accueil</a></li>
+          <li><a href="#actualites" class="nav-link">Actualités</a></li>
+          <li><a href="#equipe" class="nav-link">Équipe</a></li>
+          <li><a href="#calendrier" class="nav-link">Calendrier</a></li>
+          <li><a href="#galerie" class="nav-link">Galerie</a></li>
+          <li><a href="#partenaires" class="nav-link">Partenaires</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn-accent" href="#contact">Rejoindre le club</a>
+      </div>
+
+    </div>
+  </div>
+</header>
 
     <main id="contenu">
       <section class="hero" id="accueil" aria-labelledby="hero-title">
